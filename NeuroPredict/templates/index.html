@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NeuroAgro AI | Smart Farming</title>
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <!-- FontAwesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+    <div class="app-container">
+        <!-- Sidebar Navigation -->
+        <aside class="sidebar">
+            <div class="logo-container">
+                <i class="fa-solid fa-leaf logo-icon"></i>
+                <h2>NeuroAgro <span>AI</span></h2>
+            </div>
+            <nav class="nav-menu">
+                <button class="nav-btn active" data-target="dashboard">
+                    <i class="fa-solid fa-house"></i> Dashboard
+                </button>
+                <button class="nav-btn" data-target="crop-section">
+                    <i class="fa-solid fa-seedling"></i> Crop Match
+                </button>
+                <button class="nav-btn" data-target="irrigation-section">
+                    <i class="fa-solid fa-droplet"></i> Irrigation
+                </button>
+                <button class="nav-btn" data-target="disease-section">
+                    <i class="fa-solid fa-microscope"></i> Disease Scan
+                </button>
+                <button class="nav-btn" data-target="yield-section">
+                    <i class="fa-solid fa-chart-line"></i> Yield Predictor
+                </button>
+            </nav>
+        </aside>
+
+        <!-- Main Content Area -->
+        <main class="main-content">
+            <header class="top-header">
+                <div class="header-title">
+                    <h1 id="page-title">Dashboard Overview</h1>
+                    <p>Empowering agriculture with Artificial Intelligence</p>
+                </div>
+            </header>
+
+            <div class="content-wrapper">
+                
+                <!-- Dashboard Home -->
+                <section id="dashboard" class="glass-card active-section">
+                    <div class="hero-content">
+                        <h2>Welcome to Next-Gen Farming</h2>
+                        <p>Select a tool from the sidebar to start optimizing your agricultural workflow. Our machine learning models are designed to boost your yield and sustainability.</p>
+                        <div class="features-grid">
+                            <div class="feature-card" onclick="document.querySelector('[data-target=crop-section]').click()">
+                                <i class="fa-solid fa-seedling text-green"></i>
+                                <h3>Recommend Crop</h3>
+                                <p>Find the best crop for your soil.</p>
+                            </div>
+                            <div class="feature-card" onclick="document.querySelector('[data-target=irrigation-section]').click()">
+                                <i class="fa-solid fa-droplet text-blue"></i>
+                                <h3>Irrigation Needs</h3>
+                                <p>Water usage optimizations.</p>
+                            </div>
+                            <div class="feature-card" onclick="document.querySelector('[data-target=disease-section]').click()">
+                                <i class="fa-solid fa-microscope text-red"></i>
+                                <h3>Disease Scan</h3>
+                                <p>Detect diseases from plant leaves.</p>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Crop Recommendation Section -->
+                <section id="crop-section" class="glass-card hidden">
+                    <h3>Crop Recommendation</h3>
+                    <p class="subtitle">Enter soil and climate metrics to get the best crop match.</p>
+                    <form id="crop-form" class="ai-form">
+                        <div class="input-grid">
+                            <div class="form-group">
+                                <label>Nitrogen (N)</label>
+                                <input type="number" step="0.01" name="N" required>
+                            </div>
+                            <div class="form-group">
+                                <label>Phosphorus (P)</label>
+                                <input type="number" step="0.01" name="P" required>
+                            </div>
+                            <div class="form-group">
+                                <label>Potassium (K)</label>
+                                <input type="number" step="0.01" name="K" required>
+                            </div>
+                            <div class="form-group">
+                                <label>Temperature (°C)</label>
+                                <input type="number" step="0.01" name="temperature" required>
+                            </div>
+                            <div class="form-group">
+                                <label>Humidity (%)</label>
+                                <input type="number" step="0.01" name="humidity" required>
+                            </div>
+                            <div class="form-group">
+                                <label>Soil pH</label>
+                                <input type="number" step="0.01" name="ph" required>
+                            </div>
+                            <div class="form-group">
+                                <label>Rainfall (mm)</label>
+                                <input type="number" step="0.01" name="rainfall" required>
+                            </div>
+                        </div>
+                        <button type="submit" class="btn-primary">
+                            <span>Predict Crop</span>
+                            <i class="fa-solid fa-arrow-right"></i>
+                        </button>
+                    </form>
+                    <div class="result-box dark-bg" id="crop-result" style="display:none;"></div>
+                </section>
+
+                <!-- Irrigation Prediction Section -->
+                <section id="irrigation-section" class="glass-card hidden">
+                    <h3>Irrigation Predictor</h3>
+                    <form id="irrigation-form" class="ai-form">
+                        <div class="input-grid">
+                            <div class="form-group">
+                                <label>Soil Moisture</label>
+                                <input type="number" step="0.01" name="soil_moisture" required>
+                            </div>
+                            <div class="form-group">
+                                <label>Temperature (°C)</label>
+                                <input type="number" step="0.01" name="temperature" required>
+                            </div>
+                            <div class="form-group">
+                                <label>Humidity (%)</label>
+                                <input type="number" step="0.01" name="humidity" required>
+                            </div>
+                        </div>
+                        <button type="submit" class="btn-primary">
+                            <span>Check Irrigation Needs</span>
+                            <i class="fa-solid fa-water"></i>
+                        </button>
+                    </form>
+                    <div class="result-box dark-bg" id="irrigation-result" style="display:none;"></div>
+                </section>
+
+                <!-- Disease Detection Section -->
+                <section id="disease-section" class="glass-card hidden">
+                    <h3>Plant Disease Scanner</h3>
+                    <p class="subtitle">Upload a photo of a sick leaf to instantly identify the disease.</p>
+                    <form id="disease-form" class="ai-form" enctype="multipart/form-data">
+                        <div class="upload-area" id="upload-area">
+                            <i class="fa-solid fa-cloud-arrow-up cloud-icon"></i>
+                            <p>Drag and drop an image, or click to browse.</p>
+                            <input type="file" id="file-input" name="file" accept="image/png, image/jpeg" required hidden>
+                        </div>
+                        <div class="image-preview" id="image-preview" style="display:none;">
+                            <img id="preview-img" src="" alt="Preview">
+                            <button type="button" class="btn-secondary" id="clear-img">Remove</button>
+                        </div>
+                        <button type="submit" class="btn-primary">
+                            <span>Analyze Image</span>
+                            <i class="fa-solid fa-microscope"></i>
+                        </button>
+                    </form>
+                    <div class="result-box dark-bg" id="disease-result" style="display:none;"></div>
+                </section>
+
+                <!-- Yield Prediction Section -->
+                <section id="yield-section" class="glass-card hidden">
+                    <h3>Crop Yield Prediction</h3>
+                    <form id="yield-form" class="ai-form">
+                        <div class="input-grid">
+                            <div class="form-group">
+                                <label>Year</label>
+                                <input type="number" name="year" required>
+                            </div>
+                            <div class="form-group">
+                                <label>Rainfall (mm)</label>
+                                <input type="number" step="0.01" name="rainfall" required>
+                            </div>
+                            <div class="form-group">
+                                <label>Pesticides (tonnes)</label>
+                                <input type="number" step="0.01" name="pesticides" required>
+                            </div>
+                            <div class="form-group">
+                                <label>Avg Temperature (°C)</label>
+                                <input type="number" step="0.01" name="avg_temp" required>
+                            </div>
+                        </div>
+                        <button type="submit" class="btn-primary">
+                            <span>Predict Yield</span>
+                            <i class="fa-solid fa-chart-bar"></i>
+                        </button>
+                    </form>
+                    <div class="result-box dark-bg" id="yield-result" style="display:none;"></div>
+                </section>
+
+                <!-- Loader overlay -->
+                <div id="loader" class="loader-overlay" style="display:none;">
+                    <div class="spinner"></div>
+                    <p>AI is processing...</p>
+                </div>
+
+            </div>
+        </main>
+    </div>
+
+    <!-- Script references -->
+    <script src="{{ url_for('static', filename='js/main.js') }}"></script>
+</body>
+</html>
