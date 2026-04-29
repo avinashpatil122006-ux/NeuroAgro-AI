@@ -5,15 +5,9 @@ AI-powered agriculture system using Flask + Machine Learning.
 ## Features
 - Crop Recommendation
 - Irrigation Prediction
-- Disease Detection (CNN)
+- Disease Detection
 - Yield Prediction
 
-## Tech Stack
-- Python (Flask)
-- Scikit-learn
-- TensorFlow
-- HTML/CSS/JavaScript
-
-## How to Run
+## Run
 pip install -r requirements.txt  
 python app.py
