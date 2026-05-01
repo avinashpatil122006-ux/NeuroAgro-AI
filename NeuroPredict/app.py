@@ -4,8 +4,8 @@ import webbrowser
 from flask import Flask, render_template, request, jsonify
 
 # Import utilities
-from utils.predict import load_models, predict_crop, predict_irrigation, predict_disease, predict_yield
-from utils.preprocess import preprocess_crop_input, preprocess_irrigation_input, preprocess_disease_image, preprocess_yield_input
+from NeuroPredict.utils.predict import load_models, predict_crop, predict_irrigation, predict_disease, predict_yield
+from NeuroPredict.utils.preprocess import preprocess_crop_input, preprocess_irrigation_input, preprocess_disease_image, preprocess_yield_input
 
 app = Flask(__name__)
 
