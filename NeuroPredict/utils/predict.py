@@ -1,6 +1,5 @@
 import os
 import joblib
-import tensorflow as tf
 import numpy as np
 
 # Global variables to hold models
