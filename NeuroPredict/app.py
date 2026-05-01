@@ -2,14 +2,13 @@ import os
 import threading
 import webbrowser
 from flask import Flask, render_template, request, jsonify
-
 # Import utilities
-from NeuroPredict.utils.predict import load_models, predict_crop, predict_irrigation, predict_disease, predict_yield
-from NeuroPredict.utils.preprocess import preprocess_crop_input, preprocess_irrigation_input, preprocess_disease_image, preprocess_yield_input
+from NeuroPredict.utils.predict import load_models
+from NeuroPredict.utils.preprocess import preprocess_crop_input
 app = Flask(__name__)
 
 # Load all ML models upon starting the application
-load_models('models')
+load_models()
 
 @app.route('/')
 def home():
